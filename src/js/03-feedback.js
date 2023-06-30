@@ -24,7 +24,10 @@ function onFormInput(evt) {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-
+  if (refs.input.value === '' || refs.textarea.value === '') {
+    alert('У вас не заповнені всі поля');
+    return;
+  }
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
   console.log(formData);
@@ -36,9 +39,11 @@ function populateForm() {
   if (savedData) {
     if (savedData.email) {
       refs.input.value = savedData.email;
+      formData.email = savedData.email;
     }
     if (savedData.message) {
       refs.textarea.value = savedData.message;
+      formData.message = savedData.message;
     }
   }
 }
