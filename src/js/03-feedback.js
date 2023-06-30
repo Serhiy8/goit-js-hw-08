@@ -16,9 +16,8 @@ let formData = {};
 populateForm();
 
 function onFormInput(evt) {
-  const key = evt.target.name;
-  const value = evt.target.value;
-  formData[key] = value;
+  const { name, value } = evt.target;
+  formData[name] = value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
@@ -36,14 +35,15 @@ function onFormSubmit(evt) {
 
 function populateForm() {
   const savedData = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  const { email, message } = savedData;
   if (savedData) {
-    if (savedData.email) {
-      refs.input.value = savedData.email;
-      formData.email = savedData.email;
+    if (email) {
+      refs.input.value = email;
+      formData.email = email;
     }
-    if (savedData.message) {
-      refs.textarea.value = savedData.message;
-      formData.message = savedData.message;
+    if (message) {
+      refs.textarea.value = message;
+      formData.message = message;
     }
   }
 }
