@@ -23,7 +23,7 @@ function onFormInput(evt) {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  if (refs.input.value === '' || refs.textarea.value === '') {
+  if (refs.input.value.trim() === '' || refs.textarea.value.trim() === '') {
     alert('У вас не заповнені всі поля');
     return;
   }
